@@ -33,7 +33,6 @@ object ForComprehension {
     assert(f2 == fs2)
     assert(f2 == m2)
 
-
   }
 
   def isPrime1(i :Int) : Boolean = {
