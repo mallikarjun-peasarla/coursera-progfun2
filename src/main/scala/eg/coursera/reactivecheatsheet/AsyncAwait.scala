@@ -35,7 +35,7 @@ object AsyncAwait {
   }
 
   def futureTest(): Future[Int] = Future {
-    val n = 5
+    val n = 7
     1 to n foreach { n =>
       Thread.sleep(1000)
     }

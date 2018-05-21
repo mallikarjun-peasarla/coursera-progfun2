@@ -10,6 +10,8 @@ class BankAccount {
       balance = balance - amount
       balance
     } else throw new Error("insufficient funds")
+
+  override def toString: String = s"${this.getClass.getSimpleName}($balance)"
 }
 
 object BankAccountState {
