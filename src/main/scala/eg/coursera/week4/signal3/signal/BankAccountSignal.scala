@@ -1,6 +1,6 @@
-package eg.coursera.week4.signal
+package eg.coursera.week4.signal3
 
-import eg.coursera.week4.signal.progfun2.week04.signals.{Signal, Var}
+import eg.coursera.week4.signal3.{Signal, Var}
 
 class BankAccount {
   //var in observer pattern made to val (

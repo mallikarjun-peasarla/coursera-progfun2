@@ -1,8 +1,4 @@
-package eg.coursera.week4.signal
-
-package progfun2.week04.signals
-
-import scala.util.DynamicVariable
+package eg.coursera.week4.signal3
 
 import scala.util.DynamicVariable
 
@@ -11,12 +7,19 @@ import scala.util.DynamicVariable
   */
 
 class Signal[T](expr: => T) {
+
   import Signal._
+
   private var myExpr: () => T = _
   private var myValue: T = _
   private var observers: Set[Signal[_]] = Set()
   private var observed: List[Signal[_]] = Nil
   update(expr)
+
+  protected def update(expr: => T): Unit = {
+    myExpr = () => expr
+    computeValue()
+  }
 
   protected def computeValue(): Unit = {
     for (sig <- observed)
@@ -34,11 +37,6 @@ class Signal[T](expr: => T) {
     }
   }
 
-  protected def update(expr: => T): Unit = {
-    myExpr = () => expr
-    computeValue()
-  }
-
   def apply() = {
     observers += caller.value
     assert(!caller.value.observers.contains(this), "cyclic signal definition") // s() = s() + 1
@@ -47,13 +45,14 @@ class Signal[T](expr: => T) {
   }
 }
 
-object NoSignal extends Signal[Nothing](???) {
-  override def computeValue() = ()
-}
-
 object Signal {
   val caller = new DynamicVariable[Signal[_]](NoSignal)
-  def apply[T](expr: => T) = new Signal(expr)
+
+  def apply[T](expr: => T): Signal[T] = new Signal(expr)
+}
+
+object NoSignal extends Signal[Nothing](???) {
+  override protected def computeValue(): Unit = ()
 }
 
 class Var[T](expr: => T) extends Signal[T](expr) {

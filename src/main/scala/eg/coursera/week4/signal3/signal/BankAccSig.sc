@@ -1,6 +1,6 @@
-import eg.coursera.week4.signal.BankAccount
-import eg.coursera.week4.signal.BankAccountSignal.consolidated
-import eg.coursera.week4.signal.progfun2.week04.signals.Signal
+import eg.coursera.week4.signal3.BankAccount
+import eg.coursera.week4.signal3.BankAccountSignal.consolidated
+import eg.coursera.week4.signal3.Signal
 
 val a = new BankAccount()
 val b = new BankAccount()
